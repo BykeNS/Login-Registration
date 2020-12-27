@@ -6,7 +6,7 @@ require('vendor/autoload.php');
 use OOP\Database;
 use OOP\User;
 
-if(isset($_SESSION["login_time_stamp"]) && time()-$_SESSION["login_time_stamp"] > 46){
+if(isset($_SESSION["login_time_stamp"]) && time()-$_SESSION["login_time_stamp"] > 120){
     
     header('location: logout.php');
     }
