@@ -2,7 +2,10 @@
 session_start();
 
 $currentPage = "New Password" ;
-include ('model/Autoload.php'); 
+require('vendor/autoload.php');
+
+use OOP\Database;
+use OOP\User;
 include('include/login_header.php');
 
 
@@ -22,7 +25,7 @@ if(isset($_POST['submit']) &&  $_GET['email']){
 }	
 
 ?>
-	
+	<?php include('include/login_header.php'); ?>
 <html>
 	
 <body>

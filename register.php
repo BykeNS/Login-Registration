@@ -2,8 +2,11 @@
 session_start();
 
 $currentPage = "Register" ;
-include ('model/Autoload.php'); 
-include('include/login_header.php');
+
+require('vendor/autoload.php');
+use OOP\Database;
+use OOP\User;
+
 
 
 $db = new Database;
@@ -22,7 +25,7 @@ if(isset($_POST['submit'])){
 }	
 
 ?>
-	
+	<?php include('include/login_header.php'); ?>
 <html>
 	
 <body>

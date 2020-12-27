@@ -2,8 +2,11 @@
 session_start();
 
 $currentPage = "Forgot password" ;
-include ('model/Autoload.php'); 
-include('include/login_header.php');
+require('vendor/autoload.php');
+
+use OOP\Database;
+use OOP\User;
+
 
 $db = new Database;
 $users = new User($db);
@@ -13,6 +16,7 @@ $users = new User($db);
         
         }
 ?>
+<?php include('include/login_header.php'); ?>
 <html>
 
 <body>

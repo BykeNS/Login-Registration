@@ -2,11 +2,12 @@
 session_start();
 
 $currentPage = "Login" ;
-include ('model/Autoload.php'); 
-include('include/login_header.php'); 
-// if($_SESSION){  
-//     header("Location:index.php");  
-// }  
+require('vendor/autoload.php');
+
+use OOP\Database;
+use OOP\User;
+
+
 
 $db = new Database;
 $users = new User($db);
@@ -27,7 +28,7 @@ if(isset($_POST['login'])){
      
 	}
 ?>
-	
+	<?php include('include/login_header.php'); ?>
 <html>
 
 <body>
@@ -90,7 +91,7 @@ if(isset($_POST['login'])){
 				<label class="checkbox">
 					<input type="checkbox" value="remember-me">Remember Me
 				</label>
-			</div>.-<>
+			</div>
 			<div class="col-xs-12 col-sm-3">
 				<p class="omb_forgotPwd">
 					<a href="forgot.php">Forgot password?</a>

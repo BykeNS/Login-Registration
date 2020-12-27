@@ -1,5 +1,8 @@
 <?php
 
+namespace OOP;
+
+ 
 class User {
 
     private $db;
@@ -15,7 +18,7 @@ class User {
         $sql = "SELECT * FROM users ORDER BY id DESC";
         $stmt = $this->db->connect()->prepare($sql);
         $stmt->execute();
-        $users = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $users = $stmt->fetchAll();
         return $users;
 
     }
@@ -26,7 +29,7 @@ class User {
         $sql = "SELECT * FROM users WHERE id = :id";
         $stmt = $this->db->connect()->prepare($sql);
         $stmt->execute(['id' => $id]);
-        $show = $stmt->fetch(PDO::FETCH_OBJ);
+        $show = $stmt->fetch();
         return $show;
 
     }
@@ -36,12 +39,12 @@ class User {
         $sql = "SELECT * FROM users WHERE username = :username ";
         $stmt = $this->db->connect()->prepare($sql);
         $stmt->execute(['username'=> $username]);
-        $user = $stmt->fetch(PDO::FETCH_OBJ);
+        $user = $stmt->fetch();
        
         if (password_verify($password1, $user->password1) )
          {
             $_SESSION['username'] = $user->username;
-            // $_SESSION["login_time_stamp"] = time(); 
+            $_SESSION["login_time_stamp"] = time(); 
             $_SESSION['success'] = 'Successfully logged in ' .$user->username;
             
             header('location: index.php');
@@ -116,7 +119,7 @@ class User {
         $sql = "SELECT * FROM users WHERE username = :username ";
         $stmt = $this->db->connect()->prepare($sql);
         $stmt->execute(['username' => $username]);
-        $user = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $user = $stmt->fetchAll();
         
         if ($user ) {
            return true;
@@ -132,7 +135,7 @@ class User {
         $sql = "SELECT * FROM users WHERE email = :email ";
         $stmt = $this->db->connect()->prepare($sql);
         $stmt->execute(['email' => $email]);
-        $email = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $email = $stmt->fetchAll();
         
         if ($email) {
            return true;
@@ -148,7 +151,7 @@ class User {
         $sql = "SELECT * FROM users WHERE email = :email ";
         $stmt = $this->db->connect()->prepare($sql);
         $stmt->execute(['email' => $email]);
-        $email = $stmt->fetch(PDO::FETCH_OBJ);
+        $email = $stmt->fetch();
         
         if ($email) {
             $token = bin2hex(random_bytes(50));
@@ -188,7 +191,7 @@ class User {
          $stmt = $this->db->connect()->prepare($sql);
          $stmt->execute(['email'=>$email]);
 
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
          if ($result) {
             $hashed_password = password_hash($password1, PASSWORD_DEFAULT);
             $sql = "UPDATE users SET password1='$hashed_password' WHERE email=:email";
@@ -202,9 +205,12 @@ class User {
                 $_SESSION['danger'] = "Failed";
             }
          }
-        }
+
+      }
 
     }
+
+    
     
 
     

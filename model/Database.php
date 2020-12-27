@@ -1,4 +1,7 @@
 <?php
+namespace OOP;
+
+
 
 class Database {
 
@@ -16,15 +19,15 @@ class Database {
       
         try {
 
-            $this->db = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->dbuser, $this->dbpass,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+            $this->db = new \PDO("mysql:host=$this->host;dbname=$this->dbname", $this->dbuser, $this->dbpass,array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+            $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            $this->db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+            $this->db->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
             return $this->db;
-            echo "Connected successfully" . '<br>';
+            //echo "Connected successfully" . '<br>';
 
-        } catch (PDOException $e) {
-            throw new Exception($e->getMessage());
+        } catch (\PDOException $e) {
+            throw new \Exception($e->getMessage());
 
         }
        
